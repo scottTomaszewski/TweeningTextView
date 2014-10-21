@@ -8,10 +8,11 @@ import android.graphics.Path;
 import android.util.AttributeSet;
 import android.view.View;
 
+import com.kokalabs.svg.CubicBezierCurve;
+
 public class TweeningTextView extends View {
     private static final double SCALE = 0.5;
     private static final Paint PAINT = paint();
-    private static final Path toDraw = new Path();
 
     private static Paint paint() {
         Paint p = new Paint();
@@ -37,6 +38,7 @@ public class TweeningTextView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        drawTweenedText(canvas);
     }
 
     @Override
@@ -54,5 +56,34 @@ public class TweeningTextView extends View {
             height = maxHeight + getPaddingTop() + getPaddingBottom();
         }
         setMeasuredDimension(width, height);
+    }
+
+    private void drawTweenedText(Canvas canvas) {
+        int height = getMeasuredHeight();
+        int width = getMeasuredWidth();
+        Adjustment adjust = new Adjustment((float) (height > width ? width : height));
+
+        Path toDraw = new Path();
+        toDraw.reset();
+        for (CubicBezierCurve c : path.getPath()) {
+            toDraw.moveTo(adjust.d(c.startX), adjust.d(c.startY));
+            toDraw.cubicTo(
+                    adjust.d(c.control1X), adjust.d(c.control1Y),
+                    adjust.d(c.control2X), adjust.d(c.control2Y),
+                    adjust.d(c.endX), adjust.d(c.endY));
+        }
+        canvas.drawPath(toDraw, PAINT);
+    }
+
+    private static class Adjustment {
+        private final double minDimension;
+
+        private Adjustment(double minDimension) {
+            this.minDimension = minDimension;
+        }
+
+        private float d(double toAdjust) {
+            return (float) (minDimension * toAdjust);
+        }
     }
 }
