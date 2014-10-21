@@ -1,4 +1,4 @@
-package com.kokalabs.tweening.tweeningtextview.example;
+package com.kokalabs.tweening.textview.example;
 
 import android.app.Activity;
 import android.app.Fragment;

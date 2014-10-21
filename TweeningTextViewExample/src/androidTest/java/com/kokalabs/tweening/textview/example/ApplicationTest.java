@@ -1,4 +1,4 @@
-package com.kokalabs.tweening.tweeningtextview.example;
+package com.kokalabs.tweening.textview.example;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
