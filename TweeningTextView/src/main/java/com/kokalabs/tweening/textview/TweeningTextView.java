@@ -2,11 +2,25 @@ package com.kokalabs.tweening.textview;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Path;
 import android.util.AttributeSet;
 import android.view.View;
 
 public class TweeningTextView extends View {
     private static final double SCALE = 0.5;
+    private static final Paint PAINT = paint();
+    private static final Path toDraw = new Path();
+
+    private static Paint paint() {
+        Paint p = new Paint();
+        p.setAntiAlias(true);
+        p.setColor(Color.BLUE);
+        p.setStrokeWidth(5.0f);
+        p.setStyle(Paint.Style.STROKE);
+        return p;
+    }
 
     public TweeningTextView(Context context) {
         super(context);
