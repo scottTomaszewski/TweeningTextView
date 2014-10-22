@@ -18,19 +18,20 @@ public class TweeningTextView extends View {
     private static final double SCALE = 0.5;
     private static final Paint PAINT = paint();
 
+    private static final Property<TweeningTextView, SvgPath> PATH_POINTS =
+            new Property<TweeningTextView, SvgPath>(SvgPath.class, "path") {
+                @Override
+                public SvgPath get(TweeningTextView view) {
+                    return view.path;
+                }
+
+                @Override
+                public void set(TweeningTextView view, SvgPath value) {
+                    view.path = value;
+                }
+            };
+
     private SvgPath path;
-
-    private static final Property<TweeningTextView, SvgPath> PATH_POINTS = new Property<TweeningTextView, SvgPath>() {
-        @Override
-        public SvgPath get(TweeningTextView view) {
-            return view.path;
-        }
-
-        @Override
-        public void set(TweeningTextView view, SvgPath value) {
-            view.path = value;
-        }
-    };
 
     private static Paint paint() {
         Paint p = new Paint();
