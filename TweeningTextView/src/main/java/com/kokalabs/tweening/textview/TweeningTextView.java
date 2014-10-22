@@ -1,18 +1,36 @@
 package com.kokalabs.tweening.textview;
 
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.util.AttributeSet;
+import android.util.Property;
 import android.view.View;
 
 import com.kokalabs.svg.CubicBezierCurve;
+import com.kokalabs.svg.SvgPath;
+import com.kokalabs.svg.SvgPathTweenViaInterpolation;
 
 public class TweeningTextView extends View {
     private static final double SCALE = 0.5;
     private static final Paint PAINT = paint();
+
+    private SvgPath path;
+
+    private static final Property<TweeningTextView, SvgPath> PATH_POINTS = new Property<TweeningTextView, SvgPath>() {
+        @Override
+        public SvgPath get(TweeningTextView view) {
+            return view.path;
+        }
+
+        @Override
+        public void set(TweeningTextView view, SvgPath value) {
+            view.path = value;
+        }
+    };
 
     private static Paint paint() {
         Paint p = new Paint();
@@ -56,6 +74,14 @@ public class TweeningTextView extends View {
             height = maxHeight + getPaddingTop() + getPaddingBottom();
         }
         setMeasuredDimension(width, height);
+    }
+
+    public ObjectAnimator animate(SvgPath start, SvgPath end) {
+        return ObjectAnimator.ofObject(this, PATH_POINTS, new SvgPathTweenViaInterpolation(), start, end);
+    }
+
+    public ObjectAnimator animate(SvgPath end) {
+        return animate(SvgPath.origin(), end);
     }
 
     private void drawTweenedText(Canvas canvas) {

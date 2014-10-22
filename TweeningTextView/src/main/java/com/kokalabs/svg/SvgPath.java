@@ -33,5 +33,10 @@ public abstract class SvgPath {
         };
     }
 
+
+    public static SvgPath origin() {
+        return SvgPath.from(Lists.newArrayList(CubicBezierCurve.origin()));
+    }
+
     public abstract List<CubicBezierCurve> getPath();
 }
