@@ -14,12 +14,6 @@ import android.widget.SeekBar;
 import com.kokalabs.tweening.textview.TweeningTextView;
 
 public class TweeningActivity extends Activity {
-    public static final int DURATION = 1000;
-
-    private TweeningTextView tweeningView;
-    private SeekBar seekBar;
-    private volatile ObjectAnimator objectAnimator;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,33 +24,6 @@ public class TweeningActivity extends Activity {
                     .commit();
         }
     }
-
-    private void tweenStuff() {
-        setContentView(R.layout.fragment_tweening);
-        tweeningView = (TweeningTextView) findViewById(R.id.textView1);
-        seekBar = (SeekBar) findViewById(R.id.seekBar);
-        seekBar.setMax(DURATION);
-        objectAnimator = tweeningView.animate(Char.from, Char.to);
-        objectAnimator.setDuration(DURATION);
-        SeekBar.OnSeekBarChangeListener listener = new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if (objectAnimator != null) {
-                    objectAnimator.setCurrentPlayTime(progress);
-                }
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-            }
-        };
-        seekBar.setOnSeekBarChangeListener(listener);
-    }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -81,6 +48,12 @@ public class TweeningActivity extends Activity {
      * A placeholder fragment containing a simple view.
      */
     public static class PlaceholderFragment extends Fragment {
+        public static final int DURATION = 1000;
+
+        private TweeningTextView tweeningView;
+        private SeekBar seekBar;
+        private volatile ObjectAnimator objectAnimator;
+
         public PlaceholderFragment() {
         }
 
@@ -88,7 +61,35 @@ public class TweeningActivity extends Activity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_tweening, container, false);
+            tweenStuff(rootView);
             return rootView;
         }
+
+        private void tweenStuff(View root) {
+//        setContentView(R.layout.fragment_tweening);
+            tweeningView = (TweeningTextView) root.findViewById(R.id.textView1);
+            seekBar = (SeekBar) root.findViewById(R.id.seekBar);
+            seekBar.setMax(DURATION);
+            objectAnimator = tweeningView.animate(Char.from, Char.to);
+            objectAnimator.setDuration(DURATION);
+            SeekBar.OnSeekBarChangeListener listener = new SeekBar.OnSeekBarChangeListener() {
+                @Override
+                public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                    if (objectAnimator != null) {
+                        objectAnimator.setCurrentPlayTime(progress);
+                    }
+                }
+
+                @Override
+                public void onStartTrackingTouch(SeekBar seekBar) {
+                }
+
+                @Override
+                public void onStopTrackingTouch(SeekBar seekBar) {
+                }
+            };
+            seekBar.setOnSeekBarChangeListener(listener);
+        }
+
     }
 }

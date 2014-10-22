@@ -28,6 +28,7 @@ public class TweeningTextView extends View {
                 @Override
                 public void set(TweeningTextView view, SvgPath value) {
                     view.path = value;
+                    view.invalidate();
                 }
             };
 
