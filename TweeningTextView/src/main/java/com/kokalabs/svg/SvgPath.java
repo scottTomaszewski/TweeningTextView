@@ -5,7 +5,7 @@ import com.google.common.collect.Lists;
 import java.util.List;
 
 public abstract class SvgPath {
-    public static SvgPath from(final List<CubicBezierCurve> path, final char symbol) {
+    public static SvgPath from(final List<CubicBezierCurve> path) {
         return new SvgPath() {
             @Override
             public List<CubicBezierCurve> getPath() {
@@ -14,7 +14,7 @@ public abstract class SvgPath {
         };
     }
 
-    public static SvgPath from(final String pathDescriptions, final double unitsPerEm, final char symbol) {
+    public static SvgPath from(final String pathDescriptions, final double unitsPerEm) {
         return new SvgPath() {
             List<CubicBezierCurve> cached;
 

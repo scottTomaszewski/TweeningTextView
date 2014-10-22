@@ -3,6 +3,10 @@ package com.kokalabs.svg;
 import com.google.common.base.MoreObjects;
 
 public class CubicBezierCurve {
+    public static CubicBezierCurve origin() {
+        return new CubicBezierCurve(0, 0, 0, 0, 0, 0, 0, 0);
+    }
+
     public final double startX;
     public final double startY;
     public final double control1X;
