@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 public class TweeningActivity extends Activity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
