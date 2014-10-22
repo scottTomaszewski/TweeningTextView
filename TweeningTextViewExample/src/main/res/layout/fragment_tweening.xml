@@ -17,26 +17,6 @@
         android:textSize="40sp"
         android:textAppearance="?android:attr/textAppearanceLarge"/>
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView1"
-        android:layout_above="@+id/seekBar">
-
-        <Spinner
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:id="@+id/fromSpinner"/>
-
-        <Spinner
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:id="@+id/toSpinner"/>
-    </LinearLayout>
-
     <SeekBar
         android:id="@+id/seekBar"
         android:layout_width="match_parent"

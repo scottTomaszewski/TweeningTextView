@@ -1,5 +1,6 @@
 package com.kokalabs.tweening.textview.example;
 
+import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
@@ -8,8 +9,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SeekBar;
+
+import com.kokalabs.tweening.textview.TweeningTextView;
 
 public class TweeningActivity extends Activity {
+    public static final int DURATION = 1000;
+
+    private TweeningTextView tweeningView;
+    private SeekBar seekBar;
+    private volatile ObjectAnimator objectAnimator;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,6 +29,32 @@ public class TweeningActivity extends Activity {
                     .add(R.id.container, new PlaceholderFragment())
                     .commit();
         }
+    }
+
+    private void tweenStuff() {
+        setContentView(R.layout.fragment_tweening);
+        tweeningView = (TweeningTextView) findViewById(R.id.textView1);
+        seekBar = (SeekBar) findViewById(R.id.seekBar);
+        seekBar.setMax(DURATION);
+        objectAnimator = tweeningView.animate(Char.from, Char.to);
+        objectAnimator.setDuration(DURATION);
+        SeekBar.OnSeekBarChangeListener listener = new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                if (objectAnimator != null) {
+                    objectAnimator.setCurrentPlayTime(progress);
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+        };
+        seekBar.setOnSeekBarChangeListener(listener);
     }
 
 
@@ -45,7 +81,6 @@ public class TweeningActivity extends Activity {
      * A placeholder fragment containing a simple view.
      */
     public static class PlaceholderFragment extends Fragment {
-
         public PlaceholderFragment() {
         }
 
