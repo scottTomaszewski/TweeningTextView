@@ -1,2 +1,3 @@
-include ':TweeningTextViewExample'
 include ':TweeningTextView'
+include ':TweeningTextViewExample'
+
