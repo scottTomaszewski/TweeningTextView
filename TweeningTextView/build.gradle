@@ -5,7 +5,7 @@ android {
     buildToolsVersion "20.0.0"
 
     defaultConfig {
-        applicationId "com.kokalabs.tweening.tweeningtextview"
+        applicationId "com.kokalabs.tweening.textview"
         minSdkVersion 15
         targetSdkVersion 20
         versionCode 1

@@ -8,7 +8,7 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context=".TweeningActivity$PlaceholderFragment">
 
-    <com.kokalabs.tweening.textview
+    <com.kokalabs.tweening.textview.TweeningTextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

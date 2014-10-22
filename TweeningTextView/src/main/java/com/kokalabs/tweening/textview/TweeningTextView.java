@@ -86,6 +86,9 @@ public class TweeningTextView extends View {
     }
 
     private void drawTweenedText(Canvas canvas) {
+        if (path == null) {
+            return;
+        }
         int height = getMeasuredHeight();
         int width = getMeasuredWidth();
         Adjustment adjust = new Adjustment((float) (height > width ? width : height));
