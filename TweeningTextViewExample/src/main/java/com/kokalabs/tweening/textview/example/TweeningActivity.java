@@ -9,8 +9,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.SeekBar;
+import android.widget.Spinner;
 
+import com.kokalabs.svg.SvgPath;
 import com.kokalabs.tweening.textview.TweeningTextView;
 
 public class TweeningActivity extends Activity {
@@ -53,6 +57,8 @@ public class TweeningActivity extends Activity {
         private TweeningTextView tweeningView;
         private SeekBar seekBar;
         private volatile ObjectAnimator objectAnimator;
+        private SvgPath from = Char.from;
+        private SvgPath to = Char.to;
 
         public PlaceholderFragment() {
         }
@@ -70,8 +76,43 @@ public class TweeningActivity extends Activity {
             tweeningView = (TweeningTextView) root.findViewById(R.id.textView1);
             seekBar = (SeekBar) root.findViewById(R.id.seekBar);
             seekBar.setMax(DURATION);
-            objectAnimator = tweeningView.animate(Char.from, Char.to);
-            objectAnimator.setDuration(DURATION);
+//            objectAnimator = tweeningView.animate(Char.from, Char.to);
+//            objectAnimator.setDuration(DURATION);
+
+            Spinner fromSpinner = (Spinner) root.findViewById(R.id.fromSpinner);
+            Spinner toSpinner = (Spinner) root.findViewById(R.id.toSpinner);
+
+            ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+                    getActivity(), R.array.from_numbers_array, android.R.layout.simple_spinner_item);
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            fromSpinner.setAdapter(adapter);
+            toSpinner.setAdapter(adapter);
+            fromSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    from = Char.at(position);
+                    objectAnimator = tweeningView.animate(from, to);
+                    objectAnimator.setDuration(DURATION);
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+                }
+            });
+            toSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    to = Char.at(position);
+                    objectAnimator = tweeningView.animate(from, to);
+                    objectAnimator.setDuration(DURATION);
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
+
             SeekBar.OnSeekBarChangeListener listener = new SeekBar.OnSeekBarChangeListener() {
                 @Override
                 public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {

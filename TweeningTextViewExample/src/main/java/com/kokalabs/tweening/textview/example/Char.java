@@ -10,4 +10,19 @@ public class Char {
 
     static final SvgPath from = SvgPath.from(E, 2048);
     static final SvgPath to = SvgPath.from(C, 2048);
+
+    static final SvgPath at(int position) {
+        switch (position) {
+            case 0:
+                return SvgPath.from(C, 2048);
+            case 1:
+                return SvgPath.from(C, 2048);
+            case 2:
+                return SvgPath.from(D, 2048);
+            case 3:
+                return SvgPath.from(E, 2048);
+            default:
+                return SvgPath.from(A, 2048);
+        }
+    }
 }
