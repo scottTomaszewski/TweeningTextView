@@ -11,6 +11,7 @@ import android.util.Property;
 import android.view.View;
 
 import com.kokalabs.svg.CubicBezierCurve;
+import com.kokalabs.svg.PointD;
 import com.kokalabs.svg.SvgPath;
 import com.kokalabs.svg.SvgPathTweenViaInterpolation;
 
@@ -37,9 +38,9 @@ public class TweeningTextView extends View {
     private static Paint paint() {
         Paint p = new Paint();
         p.setAntiAlias(true);
-        p.setColor(Color.BLUE);
+        p.setColor(Color.BLACK);
         p.setStrokeWidth(5.0f);
-        p.setStyle(Paint.Style.STROKE);
+        p.setStyle(Paint.Style.FILL_AND_STROKE);
         return p;
     }
 
@@ -96,13 +97,20 @@ public class TweeningTextView extends View {
 
         Path toDraw = new Path();
         toDraw.reset();
+        toDraw.setFillType(Path.FillType.EVEN_ODD);
+        PointD last = new PointD(-1, -1);
         for (CubicBezierCurve c : path.getPath()) {
-            toDraw.moveTo(adjust.d(c.startX), adjust.d(c.startY));
+            if (last.x != c.startX || last.y != c.startY) {
+                toDraw.close();
+                toDraw.moveTo(adjust.d(c.startX), adjust.d(c.startY));
+            }
             toDraw.cubicTo(
                     adjust.d(c.control1X), adjust.d(c.control1Y),
                     adjust.d(c.control2X), adjust.d(c.control2Y),
                     adjust.d(c.endX), adjust.d(c.endY));
+            last = new PointD(c.endX, c.endY);
         }
+        toDraw.close();
         canvas.drawPath(toDraw, PAINT);
     }
 
