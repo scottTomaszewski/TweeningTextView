@@ -83,10 +83,6 @@ public class TweeningTextView extends View {
         return ObjectAnimator.ofObject(this, PATH_POINTS, new SvgPathTweenViaInterpolation(), start, end);
     }
 
-    public ObjectAnimator animate(SvgPath end) {
-        return animate(SvgPath.origin(), end);
-    }
-
     private void drawTweenedText(Canvas canvas) {
         if (path == null) {
             return;
