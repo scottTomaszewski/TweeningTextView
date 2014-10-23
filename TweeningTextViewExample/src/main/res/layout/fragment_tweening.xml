@@ -11,7 +11,7 @@
     <com.kokalabs.tweening.textview.TweeningTextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="300dp"
         android:layout_gravity="center"
         android:layout_margin="@dimen/activity_vertical_margin"
         android:textSize="30sp"
@@ -22,8 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView1"
-        android:layout_above="@+id/seekBar"
-        >
+        android:layout_above="@+id/seekBar">
 
         <Spinner
             android:layout_width="match_parent"

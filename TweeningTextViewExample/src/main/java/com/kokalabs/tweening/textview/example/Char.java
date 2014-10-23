@@ -14,7 +14,7 @@ public class Char {
     static final SvgPath at(int position) {
         switch (position) {
             case 0:
-                return SvgPath.from(C, 2048);
+                return SvgPath.from(A, 2048);
             case 1:
                 return SvgPath.from(C, 2048);
             case 2:
