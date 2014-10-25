@@ -7,7 +7,7 @@ import com.google.common.collect.Sets;
 import java.util.List;
 import java.util.Set;
 
-class SvgPathParser {
+class SvgGlyphParser {
     private static final Set<Character> COMMANDS = Sets.newHashSet(
             'M', 'm', 'L', 'l', 'H', 'h', 'V', 'v', 'Z', 'z', 'C', 'c', 'S', 's', 'Q', 'q', 'T', 't');
     private static final Set<Character> SUPPORTED = Sets.newHashSet(
@@ -16,7 +16,7 @@ class SvgPathParser {
 
     private final String source;
 
-    public SvgPathParser(String pathDescriptions) {
+    public SvgGlyphParser(String pathDescriptions) {
         this.source = pathDescriptions;
     }
 

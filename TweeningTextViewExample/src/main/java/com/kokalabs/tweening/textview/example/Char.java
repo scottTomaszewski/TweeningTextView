@@ -1,6 +1,6 @@
 package com.kokalabs.tweening.textview.example;
 
-import com.kokalabs.svg.SvgPath;
+import com.kokalabs.svg.SvgGlyph;
 
 public class Char {
     private static final String A = "M0 0l588 1468h65l576 -1468h-115l-203 516h-594l-204 -516h-113zM354 608h523l-199 527q-25 62 -60 172q-27 -96 -59 -174z";
@@ -30,65 +30,65 @@ public class Char {
     private static final String Y = "M0 1462h117l426 -800l428 800h110l-487 -897v-565h-105v557z";
     private static final String Z = "M82 0v76l856 1290h-817v96h954v-76l-858 -1290h881v-96h-1016z";
 
-    static final SvgPath from = SvgPath.from(E, 2048);
-    static final SvgPath to = SvgPath.from(C, 2048);
+    static final SvgGlyph from = SvgGlyph.from(E, 2048);
+    static final SvgGlyph to = SvgGlyph.from(C, 2048);
 
-    static final SvgPath at(int position) {
+    static final SvgGlyph at(int position) {
         switch (position) {
             case 0:
-                return SvgPath.from(A, 2048);
+                return SvgGlyph.from(A, 2048);
             case 1:
-                return SvgPath.from(B, 2048);
+                return SvgGlyph.from(B, 2048);
             case 2:
-                return SvgPath.from(C, 2048);
+                return SvgGlyph.from(C, 2048);
             case 3:
-                return SvgPath.from(D, 2048);
+                return SvgGlyph.from(D, 2048);
             case 4:
-                return SvgPath.from(E, 2048);
+                return SvgGlyph.from(E, 2048);
             case 5:
-                return SvgPath.from(F, 2048);
+                return SvgGlyph.from(F, 2048);
             case 6:
-                return SvgPath.from(G, 2048);
+                return SvgGlyph.from(G, 2048);
             case 7:
-                return SvgPath.from(H, 2048);
+                return SvgGlyph.from(H, 2048);
             case 8:
-                return SvgPath.from(I, 2048);
+                return SvgGlyph.from(I, 2048);
             case 9:
-                return SvgPath.from(J, 2048);
+                return SvgGlyph.from(J, 2048);
             case 10:
-                return SvgPath.from(K, 2048);
+                return SvgGlyph.from(K, 2048);
             case 11:
-                return SvgPath.from(L, 2048);
+                return SvgGlyph.from(L, 2048);
             case 12:
-                return SvgPath.from(M, 2048);
+                return SvgGlyph.from(M, 2048);
             case 13:
-                return SvgPath.from(N, 2048);
+                return SvgGlyph.from(N, 2048);
             case 14:
-                return SvgPath.from(O, 2048);
+                return SvgGlyph.from(O, 2048);
             case 15:
-                return SvgPath.from(P, 2048);
+                return SvgGlyph.from(P, 2048);
             case 16:
-                return SvgPath.from(Q, 2048);
+                return SvgGlyph.from(Q, 2048);
             case 17:
-                return SvgPath.from(R, 2048);
+                return SvgGlyph.from(R, 2048);
             case 18:
-                return SvgPath.from(S, 2048);
+                return SvgGlyph.from(S, 2048);
             case 19:
-                return SvgPath.from(T, 2048);
+                return SvgGlyph.from(T, 2048);
             case 20:
-                return SvgPath.from(U, 2048);
+                return SvgGlyph.from(U, 2048);
             case 21:
-                return SvgPath.from(V, 2048);
+                return SvgGlyph.from(V, 2048);
             case 22:
-                return SvgPath.from(W, 2048);
+                return SvgGlyph.from(W, 2048);
             case 23:
-                return SvgPath.from(X, 2048);
+                return SvgGlyph.from(X, 2048);
             case 24:
-                return SvgPath.from(Y, 2048);
+                return SvgGlyph.from(Y, 2048);
             case 25:
-                return SvgPath.from(Z, 2048);
+                return SvgGlyph.from(Z, 2048);
             default:
-                return SvgPath.from(A, 2048);
+                return SvgGlyph.from(A, 2048);
         }
     }
 }

@@ -12,28 +12,28 @@ import android.view.View;
 
 import com.kokalabs.svg.CubicBezierCurve;
 import com.kokalabs.svg.PointD;
-import com.kokalabs.svg.SvgPath;
-import com.kokalabs.svg.SvgPathTweenViaInterpolation;
+import com.kokalabs.svg.SvgGlyph;
+import com.kokalabs.svg.SvgGlyphTweenViaInterpolation;
 
 public class TweeningTextView extends View {
     private static final double SCALE = 0.5;
     private static final Paint PAINT = paint();
 
-    private static final Property<TweeningTextView, SvgPath> PATH_POINTS =
-            new Property<TweeningTextView, SvgPath>(SvgPath.class, "path") {
+    private static final Property<TweeningTextView, SvgGlyph> PATH_POINTS =
+            new Property<TweeningTextView, SvgGlyph>(SvgGlyph.class, "path") {
                 @Override
-                public SvgPath get(TweeningTextView view) {
+                public SvgGlyph get(TweeningTextView view) {
                     return view.path;
                 }
 
                 @Override
-                public void set(TweeningTextView view, SvgPath value) {
+                public void set(TweeningTextView view, SvgGlyph value) {
                     view.path = value;
                     view.invalidate();
                 }
             };
 
-    private SvgPath path;
+    private SvgGlyph path;
 
     private static Paint paint() {
         Paint p = new Paint();
@@ -79,8 +79,8 @@ public class TweeningTextView extends View {
         setMeasuredDimension(width, height);
     }
 
-    public ObjectAnimator animate(SvgPath start, SvgPath end) {
-        return ObjectAnimator.ofObject(this, PATH_POINTS, new SvgPathTweenViaInterpolation(), start, end);
+    public ObjectAnimator animate(SvgGlyph start, SvgGlyph end) {
+        return ObjectAnimator.ofObject(this, PATH_POINTS, new SvgGlyphTweenViaInterpolation(), start, end);
     }
 
     private void drawTweenedText(Canvas canvas) {

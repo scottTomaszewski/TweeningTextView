@@ -6,9 +6,9 @@ import com.google.common.collect.Lists;
 
 import java.util.List;
 
-public class SvgPathTweenViaInterpolation implements TypeEvaluator<SvgPath> {
+public class SvgGlyphTweenViaInterpolation implements TypeEvaluator<SvgGlyph> {
     @Override
-    public SvgPath evaluate(float fraction, SvgPath startPath, SvgPath endPath) {
+    public SvgGlyph evaluate(float fraction, SvgGlyph startPath, SvgGlyph endPath) {
         List<CubicBezierCurve> starts = startPath.getPath();
         List<CubicBezierCurve> ends = endPath.getPath();
 
@@ -20,7 +20,7 @@ public class SvgPathTweenViaInterpolation implements TypeEvaluator<SvgPath> {
         for (int i = 0; i < max; i++) {
             tweened.add(tween(fraction, starts.get(i), ends.get(i)));
         }
-        return SvgPath.from(tweened);
+        return SvgGlyph.from(tweened);
     }
 
     private void fill(List<CubicBezierCurve> path, int toFill) {

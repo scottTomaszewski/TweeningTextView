@@ -14,7 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 
-import com.kokalabs.svg.SvgPath;
+import com.kokalabs.svg.SvgGlyph;
 import com.kokalabs.tweening.textview.TweeningTextView;
 
 public class TweeningActivity extends Activity {
@@ -57,8 +57,8 @@ public class TweeningActivity extends Activity {
         private TweeningTextView tweeningView;
         private SeekBar seekBar;
         private volatile ObjectAnimator objectAnimator;
-        private SvgPath from = Char.from;
-        private SvgPath to = Char.to;
+        private SvgGlyph from = Char.from;
+        private SvgGlyph to = Char.to;
 
         public PlaceholderFragment() {
         }

@@ -4,9 +4,9 @@ import com.google.common.collect.Lists;
 
 import java.util.List;
 
-public abstract class SvgPath {
-    public static SvgPath from(final List<CubicBezierCurve> path) {
-        return new SvgPath() {
+public abstract class SvgGlyph {
+    public static SvgGlyph from(final List<CubicBezierCurve> path) {
+        return new SvgGlyph() {
             @Override
             public List<CubicBezierCurve> getPath() {
                 return path;
@@ -14,15 +14,15 @@ public abstract class SvgPath {
         };
     }
 
-    public static SvgPath from(final String pathDescriptions, final double unitsPerEm) {
-        return new SvgPath() {
+    public static SvgGlyph from(final String pathDescriptions, final double unitsPerEm) {
+        return new SvgGlyph() {
             List<CubicBezierCurve> cached;
 
             @Override
             public List<CubicBezierCurve> getPath() {
                 if (cached == null) {
                     SvgCommandAsCubicHandler toCubicBezierCurve = new SvgCommandAsCubicHandler();
-                    new SvgPathParser(pathDescriptions).parseUsing(toCubicBezierCurve);
+                    new SvgGlyphParser(pathDescriptions).parseUsing(toCubicBezierCurve);
                     cached = Lists.newArrayList();
                     for (CubicBezierCurve c : toCubicBezierCurve.getPathAsCubicBezierCurves()) {
                         cached.add(c.normalizeWithMax(unitsPerEm * 2).flipAlongHorizontal());
@@ -34,8 +34,8 @@ public abstract class SvgPath {
     }
 
 
-    public static SvgPath origin() {
-        return SvgPath.from(Lists.newArrayList(CubicBezierCurve.origin()));
+    public static SvgGlyph origin() {
+        return SvgGlyph.from(Lists.newArrayList(CubicBezierCurve.origin()));
     }
 
     public abstract List<CubicBezierCurve> getPath();
